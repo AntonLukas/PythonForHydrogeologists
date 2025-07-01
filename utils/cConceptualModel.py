@@ -161,7 +161,7 @@ class AnimatedConceptualModel:
             # Get drawdown values along the section
             for space_index in range(len(self.space)):
                 if self.no_flow:
-                    drawdown_calc = theis_with_no_flow(x=x,
+                    drawdown_calc = theis_with_no_flow(time=x,
                                                        transmissivity=self.transmissivity,
                                                        storativity=self.storativity,
                                                        radius=self.space[space_index],
@@ -169,7 +169,7 @@ class AnimatedConceptualModel:
                                                        pump_off=func_pump_off,
                                                        no_flow_distance=self.no_flow_distance)
                 else:
-                    drawdown_calc = theis_method(x=x,
+                    drawdown_calc = theis_method(time=x,
                                                  transmissivity=self.transmissivity,
                                                  storativity=self.storativity,
                                                  radius=abs(self.space[space_index]),
@@ -196,7 +196,7 @@ class AnimatedConceptualModel:
         calc_pump_off_drawdown = 0.0
         pump_off = False
         for index in range(len(self.time)):
-            dd = theis_method(x=self.time[index], transmissivity=self.transmissivity, storativity=self.storativity,
+            dd = theis_method(time=self.time[index], transmissivity=self.transmissivity, storativity=self.storativity,
                               radius=radius, abstraction_rate=self.abstraction_rate, pump_off=pump_off)
             if index == self.pump_off_index:
                 pump_off = True
